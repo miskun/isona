@@ -34,6 +34,15 @@ module.exports = function (grunt) {
             }
         },
 
+        mochaTest: {
+            unit:{
+                options: {
+                    reporter: 'spec'
+                },
+                src: ['test/**/*.js']
+            }
+        },
+
         watch:{
             scripts:{
                 files:[
@@ -48,10 +57,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-mocha-test');
 
-    // Default task
+    // Tasks
     grunt.registerTask('default', [ 'concat', 'uglify']);
     grunt.registerTask('develop', [ 'concat', 'watch']);
     grunt.registerTask('build', [ 'concat', 'uglify']);
+    grunt.registerTask('test', [ 'mochaTest']);
 
 };
